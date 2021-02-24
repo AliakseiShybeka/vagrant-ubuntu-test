@@ -12,18 +12,18 @@ Vagrant.configure("2") do |config|
    end
 
   # Application server 1
-  config.vm.define "app1" do |app|
-    app.vm.hostname = "orc-app1.dev"
-    app.vm.box = "geerlingguy/centos7"
-    app.vm.network :private_network, ip: "192.168.60.4"
-    config.vm.provision "shell", path: "/provision/centos_provision.sh"
+  config.vm.define "app1" do |app1|
+    app1.vm.hostname = "orc-app1.dev"
+    app1.vm.box = "geerlingguy/centos7"
+    app1.vm.network :private_network, ip: "192.168.60.4"
+    config.vm.provision "shell", path: "./provision/centos_provision.sh"
   end
 
        # Application server 2
-   config.vm.define "db" do |db|
-     db.vm.hostname = "orc-db.dev"
-     db.vm.box = "hashicorp/bionic64"
-     db.vm.network :private_network, ip: "192.168.60.5"
+   config.vm.define "app2" do |app2|
+    app2.vm.hostname = "orc-db.dev"
+    app2.vm.box = "hashicorp/bionic64"
+    app2.vm.network :private_network, ip: "192.168.60.5"
    end
 
     # # Provision configuration for Ansible
